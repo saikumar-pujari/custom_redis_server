@@ -24,7 +24,7 @@ static void *worker(void *arg) {
 
 void thread_pool_init(TheadPool *tp, size_t num_threads) {
     assert(num_threads > 0);
-
+    // always check for the race condition before the initalizing the PID
     int rv = pthread_mutex_init(&tp->mu, NULL);
     assert(rv == 0);
     rv = pthread_cond_init(&tp->not_empty, NULL);
